@@ -29,6 +29,11 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        if ($request->user()->hasRole('standard-user') ||
+            $request->user()->hasRole('premium-user')) {
+            return redirect()->intended(route('subscribed.dashboard'));
+        }
+
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 

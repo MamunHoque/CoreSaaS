@@ -22,6 +22,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::resource('/permissions', \App\Http\Controllers\PermissionsController::class);
 });
 
 require __DIR__.'/auth.php';
+
+Route::post('/subscribe', [SubscriptionController::class, 'subscribe'])
+    ->middleware(['auth'])
+    ->name('subscribe');
+
+Route::name('subscribed.')
+    ->middleware(['auth', 'role:standard-user|premium-user'])
+    ->group(function() {
+        Route::view('subscribed/dashboard', 'subscribed.dashboard')
+            ->name('dashboard');
+    });

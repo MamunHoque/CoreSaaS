@@ -63,9 +63,9 @@ Getting Started
 
 To get started with CoreSaaS, you will need to have PHP and a database server installed on your system. You can then clone the CoreSaaS repository and update .env then run the following commands:
 
-`composer install
+```composer install
 php artisan migrate --seed
-php artisan serve`
+php artisan serve```
 
 These commands will install the required dependencies, create the database tables, and start the application.
 
