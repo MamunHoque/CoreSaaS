@@ -30,8 +30,7 @@ class PermissionsController extends Controller
 
         return datatables()->of(Permission::query())
             ->addColumn('action', function(Permission $permission) {
-                $action = '<a href = "'.route('permissions.edit', $permission->id).'" class="btn-sm btn-success">edit</a>';
-
+                $action = '<a href = "'.route('permissions.edit', $permission->id).'" class="btn btn-sm btn-success">edit</a>';
                 return $action;
             })
             ->rawColumns(['action'])
